@@ -9,7 +9,7 @@ const Smurf = props => {
     <div className='mb-3 col-6'>
       <Card inverse color='primary'>
         <CardBody>
-          <CardTitle>{props.name}</CardTitle>
+          <CardTitle><h3>{props.name}</h3></CardTitle>
           <CardSubtitle>{props.height} tall</CardSubtitle>
           <CardText>{props.age} smurf years old</CardText>
           <Link to={`/smurfs/${props.id}`}>
