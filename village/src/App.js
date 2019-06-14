@@ -48,6 +48,21 @@ class App extends Component {
       })
   }
 
+  deleteSmurf = (e, smurf) => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:3333/smurfs/${smurf.id}`)
+      .then(res => {
+        this.setState({
+          smurfs: res.data
+        })
+        this.props.history.push('/')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed
