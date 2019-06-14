@@ -12,6 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       smurfs: [],
+      activeSmurf: null,
       collapsed: true
     };
   }
@@ -90,12 +91,14 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <Route path='/smurf-form' render={(props) => (
-          <SmurfForm {...props} postSmurf={this.postSmurf} />
-        )} />
-        <Route exact path='/' render={(props) => (
-          <Smurfs {...props} smurfs={this.state.smurfs} />
-        )} />
+        <div className='container w-100'>
+          <Route path='/smurf-form' render={(props) => (
+            <SmurfForm {...props} postSmurf={this.postSmurf} />
+          )} />
+          <Route exact path='/' render={(props) => (
+            <Smurfs {...props} smurfs={this.state.smurfs} />
+          )} />
+        </div>
       </div>
     );
   }

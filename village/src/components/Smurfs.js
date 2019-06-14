@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Col, Row } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 import Smurf from './Smurf';
 
@@ -11,9 +11,7 @@ class Smurfs extends Component {
   render() {
     return (
       <div className="Smurfs" style={divStyle}>
-        <Container fluid>
           <Row>
-            <Col md={{size: 4, offset: 4}}>
               {this.props.smurfs.map(smurf => {
                 return (
                   <Smurf
@@ -25,16 +23,14 @@ class Smurfs extends Component {
                   />
                 );
               })}
-            </Col>
           </Row>
-        </Container>
       </div>
     );
   }
 }
 
 Smurf.defaultProps = {
- smurfs: [],
+  smurfs: [],
 };
 
 export default Smurfs;
