@@ -5,16 +5,15 @@ import { Card, CardText, CardBody, CardTitle, CardSubtitle, Row, Button } from '
 
 const Smurf = props => {
   return (
-    <div className='mb-3 col-md-4 offset-1'>
+    <div className='mb-3 col-6'>
       <Card inverse color='primary'>
         <CardBody>
           <CardTitle>{props.name}</CardTitle>
           <CardSubtitle>{props.height} tall</CardSubtitle>
           <CardText>{props.age} smurf years old</CardText>
+          <Button color='danger'>Delete</Button>
         </CardBody>
-        <Button>Info</Button>
       </Card>
-      <Row />
     </div>
   );
 };

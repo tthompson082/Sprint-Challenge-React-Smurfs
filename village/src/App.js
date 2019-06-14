@@ -91,7 +91,7 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <div className='container w-100'>
+        <div className='container fluid'>
           <Route path='/smurf-form' render={(props) => (
             <SmurfForm {...props} postSmurf={this.postSmurf} />
           )} />
