@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, NavLink } from 'react-router-dom';
-import { Navbar, NavbarBrand, NavItem, Nav, Collapse, NavbarToggler } from 'reactstrap';
+import { Navbar, NavbarBrand, NavItem, Nav, Collapse, NavbarToggler, Container } from 'reactstrap';
 
 import './App.css';
 import SmurfForm from './components/SmurfForm';
@@ -105,7 +105,7 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <div className='container fluid'>
+        <Container fluid>
           <Route path='/smurf-form' render={(props) => (
             <SmurfForm {...props} postSmurf={this.postSmurf} />
           )} />
@@ -115,7 +115,7 @@ class App extends Component {
           <Route path='/smurfs/:id' render={(props) => (
             <UpdateSmurf {...props} smurfs={this.state.smurfs} deleteSmurf={this.deleteSmurf} putSmurf={this.putSmurf} />
           )} />
-        </div>
+        </Container>
       </div>
     );
   }
