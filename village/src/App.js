@@ -56,6 +56,21 @@ class App extends Component {
         this.setState({
           smurfs: res.data
         })
+        this.props.history.push('/')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  putSmurf = smurf => {
+    axios
+      .put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+      .then(res => {
+        this.setState({
+          smurfs: res.data
+        })
+        this.props.history.push('/')
       })
       .catch(err => {
         console.log(err)
@@ -98,7 +113,7 @@ class App extends Component {
             <Smurfs {...props} smurfs={this.state.smurfs} />
           )} />
           <Route path='/smurfs/:id' render={(props) => (
-            <UpdateSmurf {...props} smurfs={this.state.smurfs} deleteSmurf={this.deleteSmurf} />
+            <UpdateSmurf {...props} smurfs={this.state.smurfs} deleteSmurf={this.deleteSmurf} putSmurf={this.putSmurf} />
           )} />
         </div>
       </div>

@@ -14,18 +14,6 @@ class UpdateSmurf extends Component {
         };
     }
 
-    // deleteSmurf = event => {
-    //     event.preventDefault();
-    //     // add code to create the smurf using the api
-    //     this.props.deleteSmurf(this.state)
-
-    //     this.setState({
-    //     name: '',
-    //     age: '',
-    //     height: ''
-    //     });
-    // }
-
     componentDidMount() {
         const id = this.props.match.params.id;
         this.fetchSmurf(id)
@@ -46,8 +34,23 @@ class UpdateSmurf extends Component {
     }
 
     handleInputChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({
+            smurf: {
+                ...this.state.smurf,
+                [e.target.name]: e.target.value 
+            }
+        });
     };
+
+    delSmurf = e => {
+        e.preventDefault();
+        this.props.deleteSmurf(this.state.smurf)
+    }
+
+    updSmurf = e => {
+        e.preventDefault();
+        this.props.putSmurf(this.state.smurf)
+    }
 
     render() {
         return (
@@ -83,7 +86,8 @@ class UpdateSmurf extends Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Button color='secondary' type="submit">Update</Button>
+                        <Button color='secondary' type="submit" onClick={this.updSmurf}>Update</Button>
+                        <Button color='secondary' className='ml-2' type='submit' onClick={this.delSmurf}>Delete</Button>
                     </FormGroup>
                     </Form>
                 </CardBody>
