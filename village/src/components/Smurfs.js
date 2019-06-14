@@ -13,7 +13,7 @@ class Smurfs extends Component {
       <div className="Smurfs" style={divStyle}>
         <Container fluid>
           <Row>
-            <Col xl={{size: 4, offset: 4}}>
+            <Col md={{size: 4, offset: 4}}>
               {this.props.smurfs.map(smurf => {
                 return (
                   <Smurf
