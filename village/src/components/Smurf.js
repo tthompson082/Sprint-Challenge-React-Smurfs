@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardTitle, CardSubtitle, Row, Button } from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 
@@ -11,7 +12,9 @@ const Smurf = props => {
           <CardTitle>{props.name}</CardTitle>
           <CardSubtitle>{props.height} tall</CardSubtitle>
           <CardText>{props.age} smurf years old</CardText>
-          <Button color='danger'>Delete</Button>
+          <Link to={`/smurfs/${props.id}`}>
+            <Button color='dark'>Update</Button>
+          </Link>
         </CardBody>
       </Card>
     </div>

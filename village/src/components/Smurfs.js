@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'reactstrap';
+import { Row } from 'reactstrap';
 
 import Smurf from './Smurf';
 

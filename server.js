@@ -26,7 +26,7 @@ server.get('/smurfs', (req, res) => {
 });
 let smurfId = 1;
 
-app.get('/smurfs/:id', (req, res) => {
+server.get('/smurfs/:id', (req, res) => {
 	const smurf = smurfs.filter(smurf => smurf.id.toString() === req.params.id)[0];
 	res.status(200).json(smurf);
 });

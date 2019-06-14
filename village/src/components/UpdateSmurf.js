@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Card, CardBody } from 'reactstrap';
+import axios from 'axios';
 
 class UpdateSmurf extends Component {
     constructor(props) {
         super(props);
         this.state = {
-        name: '',
-        age: '',
-        height: ''
+        smurf: {
+            name: 'name',
+            age: 'age',
+            height: 'height'
+        }
         };
     }
 
@@ -23,6 +26,25 @@ class UpdateSmurf extends Component {
     //     });
     // }
 
+    componentDidMount() {
+        const id = this.props.match.params.id;
+        this.fetchSmurf(id)
+    }
+
+    fetchSmurf = id => {
+        axios
+            .get(`http://localhost:3333/smurfs/${id}`)
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    smurf: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     handleInputChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
@@ -30,38 +52,42 @@ class UpdateSmurf extends Component {
     render() {
         return (
         <div className="SmurfForm col-4 offset-4 mt-2">
-            <Form onSubmit={this.addSmurf}>
-            <FormGroup>
-                <Label for='name'>Name</Label>
-                <Input
-                onChange={this.handleInputChange}
-                placeholder="Name"
-                value={this.state.name}
-                name="name"
-                />
-            </FormGroup>
-            <FormGroup>
-                <Label for='age'>Age</Label>
-                <Input
-                onChange={this.handleInputChange}
-                placeholder="Age"
-                value={this.state.age}
-                name="age"
-                />
-            </FormGroup>
-            <FormGroup>
-                <Label for='height'>Height</Label>
-                <Input
-                onChange={this.handleInputChange}
-                placeholder="Height"
-                value={this.state.height}
-                name="height"
-                />
-            </FormGroup>
-            <FormGroup>
-                <Button color='primary' type="submit">Add to the village</Button>
-            </FormGroup>
-            </Form>
+            <Card inverse color='primary'>
+                <CardBody>
+                    <Form>
+                    <FormGroup>
+                        <Label for='name'>Name</Label>
+                        <Input
+                        onChange={this.handleInputChange}
+                        placeholder="Name"
+                        value={this.state.smurf.name}
+                        name="name"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for='age'>Age</Label>
+                        <Input
+                        onChange={this.handleInputChange}
+                        placeholder="Age"
+                        value={this.state.smurf.age}
+                        name="age"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for='height'>Height</Label>
+                        <Input
+                        onChange={this.handleInputChange}
+                        placeholder="Height"
+                        value={this.state.smurf.height}
+                        name="height"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Button color='secondary' type="submit">Update</Button>
+                    </FormGroup>
+                    </Form>
+                </CardBody>
+            </Card>
         </div>
         );
     }
