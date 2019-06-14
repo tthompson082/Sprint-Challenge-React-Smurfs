@@ -6,13 +6,13 @@ import { Navbar, NavbarBrand, NavItem, Nav, Collapse, NavbarToggler } from 'reac
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
+import UpdateSmurf from './components/UpdateSmurf'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       smurfs: [],
-      activeSmurf: null,
       collapsed: true
     };
   }
@@ -49,20 +49,19 @@ class App extends Component {
       })
   }
 
-  deleteSmurf = (e, smurf) => {
-    e.preventDefault();
+  deleteSmurf = smurf => {
     axios
       .delete(`http://localhost:3333/smurfs/${smurf.id}`)
       .then(res => {
         this.setState({
           smurfs: res.data
         })
-        this.props.history.push('/')
       })
       .catch(err => {
         console.log(err)
       })
   }
+
 
   toggle = () => {
     this.setState({
@@ -98,6 +97,7 @@ class App extends Component {
           <Route exact path='/' render={(props) => (
             <Smurfs {...props} smurfs={this.state.smurfs} />
           )} />
+          
         </div>
       </div>
     );
